@@ -9,6 +9,7 @@ class SpinnerGeneric {
         // Options
         this.options = options || {
             numberOfSkeletons: 1,
+            contextFunction: undefined,
         };
 
         this.init();
@@ -72,21 +73,30 @@ class SpinnerGeneric {
 
     drawElement(template, jsonData = undefined) {
         this.innerHTMLElement(template(jsonData));
+        
+        if (this.options.contextFunction) {
+            this.options.contextFunction(jsonData)
+        }
     }
 
     drawElements(template, jsonData = undefined) {
+
         if (jsonData) {
             // Replacing placeholder elements with first api element
-            this.innerHTMLElement(template(jsonData.pop()));
+            this.innerHTMLElement(template(jsonData[0]));
             // Adding other api elements
-            for (let r of jsonData) {
-                this.innerHTMLElements(template(r));
+            for (let i = 1; i < jsonData.length; i++) {
+                this.innerHTMLElements(template(jsonData[i]));
             }
         } else {
             for (let i = 0; i < this.options.numberOfSkeletons; i++) {
                 this.innerHTMLElements(template());
             }
         }
+        if (this.options.contextFunction) {
+            this.options.contextFunction(jsonData)
+        }
+
     }
 
     innerHTMLElement(content) {
