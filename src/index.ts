@@ -1,1 +1,1 @@
-export { SpinnerGeneric } from "./spinner-generic.js";
+export { SpinnerGeneric } from "./spinner-generic";

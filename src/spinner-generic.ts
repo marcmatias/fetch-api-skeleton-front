@@ -86,7 +86,7 @@ export class SpinnerGeneric {
         return jsonData;
     }
 
-    drawElement(template: Function, jsonData?:string|JSON) {
+    drawElement(template: Function, jsonData?: string | JSON) {
         this.innerHTMLElement(template(jsonData));
 
         if (this.options.contextFunction) {
@@ -94,7 +94,7 @@ export class SpinnerGeneric {
         }
     }
 
-    drawElements(template: Function, jsonData?:Array<string>) {
+    drawElements(template: Function, jsonData?: Array<string>) {
 
         if (jsonData) {
             // Replacing placeholder elements with first api element
