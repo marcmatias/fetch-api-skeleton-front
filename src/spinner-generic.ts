@@ -1,5 +1,19 @@
-class SpinnerGeneric {
-    constructor(api, elementToBeFilled, loader, template, skeleton, options) {
+export class SpinnerGeneric {
+    api: string;
+    elementToBeFilled: HTMLElement;
+    loader: HTMLElement;
+    template: Function;
+    skeleton: Function;
+    options: { numberOfSkeletons: number; contextFunction: Function; };
+
+    constructor(
+        api: string,
+        elementToBeFilled: string,
+        loader: string,
+        template: Function,
+        skeleton: Function,
+        options: { numberOfSkeletons: number; contextFunction: Function; }
+    ) {
         this.api = api;
         this.elementToBeFilled = this.getElement(elementToBeFilled);
         this.loader = this.getElement(loader);
@@ -39,8 +53,9 @@ class SpinnerGeneric {
      * 
      * @param  {String} element 
      */
-    getElement(element) {
-        return typeof element === 'string' ? document.querySelector(element) : element;
+    getElement(element: string): any {
+        const result = document.querySelector(element);
+        return result;
     }
 
     /**
@@ -50,7 +65,7 @@ class SpinnerGeneric {
      * 
      * @return {object}  Data as JSON
      */
-    async getApiData(url) {
+    async getApiData(url: string): Promise<JSON> {
 
         // Storing response
         const response = await fetch(url);
@@ -65,21 +80,21 @@ class SpinnerGeneric {
 
         // Hide loader
         if (response && this.loader) {
-            hideloader();
+            this.hideloader();
         }
 
         return jsonData;
     }
 
-    drawElement(template, jsonData = undefined) {
+    drawElement(template: Function, jsonData?:string|JSON) {
         this.innerHTMLElement(template(jsonData));
-        
+
         if (this.options.contextFunction) {
             this.options.contextFunction(jsonData)
         }
     }
 
-    drawElements(template, jsonData = undefined) {
+    drawElements(template: Function, jsonData?:Array<string>) {
 
         if (jsonData) {
             // Replacing placeholder elements with first api element
@@ -99,11 +114,11 @@ class SpinnerGeneric {
 
     }
 
-    innerHTMLElement(content) {
+    innerHTMLElement(content: string) {
         this.elementToBeFilled.innerHTML = content;
     }
 
-    innerHTMLElements(content) {
+    innerHTMLElements(content: string) {
         this.elementToBeFilled.innerHTML += content;
     }
 

@@ -1,0 +1,25 @@
+{
+  "name": "fetch-api-skeleton-front",
+  "version": "1.0.0",
+  "description": "Fetch api and set skeleton front",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc --watch",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcmatias/fetch-api-skeleton-front.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcmatias/fetch-api-skeleton-front/issues"
+  },
+  "homepage": "https://github.com/marcmatias/fetch-api-skeleton-front#readme",
+  "dependencies": {
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {}
+}

@@ -19,7 +19,7 @@
         <h1 class="display-5 pb-4">Registered Employees</h1>
         <!-- Here a loader is created which 
             loads till response comes -->
-        <table class="table table-bordered table-striped table-hover placeholder-glow shadow" >
+        <table class="table table-bordered table-striped table-hover placeholder-glow shadow">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -38,8 +38,8 @@
         crossorigin="anonymous"></script>
 
     <!-- App js -->
-    <script src="./spinner-generic.js"></script>
-    <script>
+    <script type="module">
+        import { SpinnerGeneric } from "../dist/index.js";
 
         function tableTemplate(jsonData) {
             return `<tr> 
