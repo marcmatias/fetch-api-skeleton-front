@@ -32,7 +32,7 @@
         </script>
     <!-- App js -->
     <script type="module">
-        import { SpinnerGeneric } from "../dist/fetch-api-skeleton-front.min.js";
+        import { Spinner } from "../dist/fetch-api-skeleton-front.js";
         /* Templates */
 
         function skeletonTemplate() {
@@ -57,8 +57,8 @@
                     </div>`;
         };
 
-        /* SpinnerGeneric Instantiation */
-        const spinnerSingle = new SpinnerGeneric(
+        /* Spinner Instantiation */
+        const spinnerSingle = new Spinner(
             "https://fakerapi.it/api/v1/persons?_quantity=4",
             "#main",
             undefined,
@@ -76,29 +76,33 @@
                         'May',
                         'June',
                     ];
-    
+
                     const data = {
                         labels: labels,
                         datasets: [{
                             label: 'Dataset',
                             backgroundColor: 'rgb(255, 99, 132)',
                             borderColor: 'rgb(255, 99, 132)',
-                            data: [0, 10, 5, 2, 20, 30, 45],
+                            data: [10, 5, 2, 20, 30, 45],
                         }]
                     };
+
                     const data2 = {
                         labels: labels,
                         datasets: [{
                             label: 'Dataset',
                             backgroundColor: [
+                                'rgb(255, 100, 100)',
+                                'rgb(150, 255, 150)',
+                                'rgb(5, 99, 132)',
                                 'rgb(255, 99, 132)',
                                 'rgb(54, 162, 235)',
                                 'rgb(255, 205, 86)'
                             ],
-                            data: [0, 10, 5, 2, 20, 30, 45],
+                            data: [ 10, 5, 2, 20, 30, 45],
                         }]
                     };
-    
+
                     const config = [
                         {
                             type: 'bar',
@@ -113,20 +117,20 @@
                         {
                             type: 'radar',
                             data: data,
-                            options: {aspectRatio: 1.999}
+                            options: { aspectRatio: 1.999 }
                         },
                         {
                             type: 'doughnut',
                             data: data2,
-                            options: {aspectRatio: 1.999}
+                            options: { aspectRatio: 1.999 }
                         }
                     ];
 
-                    if(jsonData) {
+                    if (jsonData) {
                         for (let el of jsonData) {
                             let myChart = new Chart(
                                 document.getElementById(el.id),
-                                config[el.id-1]
+                                config[el.id - 1]
                             );
                         }
                     }

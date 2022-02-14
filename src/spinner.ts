@@ -1,10 +1,14 @@
-export class SpinnerGeneric {
+import DataFetch from "./data-fetch";
+
+export default class Spinner {
   api: string;
   elementToBeFilled: HTMLElement;
   loader: HTMLElement;
   template: Function;
   skeleton: Function;
   options: { numberOfSkeletons: number; contextFunction: Function };
+
+  dataFetch: DataFetch;
 
   constructor(
     api: string,
@@ -18,8 +22,10 @@ export class SpinnerGeneric {
     this.elementToBeFilled = this.getElement(elementToBeFilled);
     this.loader = this.getElement(loader);
     this.template = template;
-    this.skeleton = skeleton;
+    this.dataFetch = new DataFetch();
 
+    this.skeleton = skeleton;
+  
     // Options
     this.options = options || {
       numberOfSkeletons: 1,
@@ -37,14 +43,11 @@ export class SpinnerGeneric {
       this.drawElement(this.skeleton);
     }
 
-    const jsonResult = await this.getApiData(this.api);
+    const jsonResult = await this.dataFetch.getApiData(this.api);
 
     // Draw elements or element
-    if (Array.isArray(jsonResult)) {
-      this.drawElements(this.template, jsonResult);
-    } else {
+    Array.isArray(jsonResult) ? this.drawElements(this.template, jsonResult) :
       this.drawElement(this.template, jsonResult);
-    }
   }
 
   /**
@@ -57,32 +60,6 @@ export class SpinnerGeneric {
     return result;
   }
 
-  /**
-   * Get API data as JSON
-   *
-   * @param  {String} url
-   *
-   * @return {object}  Data as JSON
-   */
-  async getApiData(url: string): Promise<JSON> {
-    // Storing response
-    const response = await fetch(url);
-
-    // Storing data in form of JSON
-    let jsonData = await response.json();
-
-    // If API returning status return data
-    if (jsonData.hasOwnProperty("status")) {
-      jsonData = jsonData.data;
-    }
-
-    // Hide loader
-    if (response && this.loader) {
-      this.hideloader();
-    }
-
-    return jsonData;
-  }
 
   drawElement(template: Function, jsonData?: string | JSON) {
     this.innerHTMLElement(template(jsonData));

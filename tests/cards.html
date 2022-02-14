@@ -36,7 +36,7 @@
 
     <!-- App js -->
     <script type="module">
-        import { SpinnerGeneric } from "../dist/fetch-api-skeleton-front.min.js";
+        import { Spinner } from "../dist/fetch-api-skeleton-front.js";
         /* Templates */
 
         function cardTemplate(jsonData) {
@@ -76,15 +76,15 @@
             `;
         };
 
-        /* SpinnerGeneric Instantiation */
-        const spinnerSingle = new SpinnerGeneric(
+        /* Spinner Instantiation */
+        const spinnerSingle = new Spinner(
             "https://fakerapi.it/api/v1/persons?_quantity=1",
             "#main-single",
             undefined,
             cardTemplate,
             cardSkeletonTemplate,
         );
-        const spinner = new SpinnerGeneric(
+        const spinner = new Spinner(
             "https://fakerapi.it/api/v1/persons?_quantity=10",
             "#main",
             undefined,

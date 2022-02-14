@@ -39,7 +39,7 @@
 
     <!-- App js -->
     <script type="module">
-        import { SpinnerGeneric } from "../dist/fetch-api-skeleton-front.min.js";
+        import { Spinner } from "../dist/fetch-api-skeleton-front.js";
 
         function tableTemplate(jsonData) {
             return `<tr> 
@@ -55,7 +55,7 @@
                     </tr>`
         }
 
-        const spinner = new SpinnerGeneric(
+        const spinner = new Spinner(
             "http://fakeapi.jsonparseronline.com/posts",
             "#main",
             undefined,

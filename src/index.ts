@@ -1,1 +1,1 @@
-export { SpinnerGeneric } from "./spinner-generic";
+export { default as Spinner } from "./spinner";
